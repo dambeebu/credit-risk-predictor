@@ -33,12 +33,12 @@ marital_status = st.sidebar.selectbox("Marital Status",
 gender = st.sidebar.selectbox("Sex", options=[1, 2], format_func=lambda x: "Male" if x==1 else "Female")
 
 # Repayment status (most important features!)
-repay_status_sep = st.sidebar.selectbox("Repayment Last Month", options=range(-2, 9),
-                            format_func=lambda x: "On time/Paid early" if x <= 0 else f"{x} months late")
-repay_status_aug = st.sidebar.selectbox("Repayment 2 Months Ago", options=range(-2, 9),
-                            format_func=lambda x: "On time/Paid early" if x <= 0 else f"{x} months late")
-repay_status_jul = st.sidebar.selectbox("Repayment 3 Months Ago", options=range(-2, 9),
-                            format_func=lambda x: "On time/Paid early" if x <= 0 else f"{x} months late")
+repay_status_sep = st.sidebar.selectbox("Repayment Last Month", options=range(0, 9),
+                            format_func=lambda x: "On time/Paid early" if x <= 0 else f"{x} month(s) late")
+repay_status_aug = st.sidebar.selectbox("Repayment 2 Months Ago", options=range(0, 9),
+                            format_func=lambda x: "On time/Paid early" if x <= 0 else f"{x} month(s) late")
+repay_status_jul = st.sidebar.selectbox("Repayment 3 Months Ago", options=range(0, 9),
+                            format_func=lambda x: "On time/Paid early" if x <= 0 else f"{x} month(s) late")
 
 # Bill and payment amounts
 bill_amt_sep = st.sidebar.number_input("Bill Amount Last Month ($)", 0, 800_000, 50_000)
