@@ -46,20 +46,37 @@ pay_amt1 = st.sidebar.number_input("Amount Paid Last Month (NT$)", 0, 500_000, 3
 pay_amt2 = st.sidebar.number_input("Amount Paid 2 Months Ago (NT$)", 0, 500_000, 3000)
 
 # --------------------- CREATE INPUT DATAFRAME (exact same columns as training) ---------------------
+# --------------------- CREATE INPUT DATAFRAME (MUST HAVE EXACT SAME 25 COLUMNS) ---------------------
 input_data = pd.DataFrame({
-    'LIMIT_BAL': [limit_bal],
-    'SEX': [sex],
-    'EDUCATION': [education],
-    'MARRIAGE': [marriage],
-    'AGE': [age],
-    'PAY_0': [pay_0],
-    'PAY_2': [pay_2],
-    'PAY_3': [pay_3],
-    'BILL_AMT1': [bill_amt1],
-    'BILL_AMT2': [bill_amt2],
-    'PAY_AMT1': [pay_amt1],
-    'PAY_AMT2': [pay_amt2],
-    # Add more PAY_x, BILL_AMTx, PAY_AMTx if you used them in training!
+    'credit_limit': [credit_limit],
+    'gender': [gender],
+    'education': [education],
+    'marital_status': [marital_status],
+    'age': [age],
+    
+    # Repayment status — you only asked for 3, but model needs all 6 → fill missing with 0 (on-time)
+    'repay_status_sep': [repay_status_sep],
+    'repay_status_aug': [repay_status_aug],
+    'repay_status_jul': [repay_status_jul],
+    'repay_status_jun': [0],      # assuming on-time if not provided
+    'repay_status_may': [0],
+    'repay_status_apr': [0],
+    
+    # Bill amounts — fill older months with reasonable defaults
+    'bill_amt_sep': [bill_amt_sep],
+    'bill_amt_aug': [bill_amt_sep * 0.95],   # slightly lower than current
+    'bill_amt_jul': [bill_amt_sep * 0.90],
+    'bill_amt_jun': [bill_amt_sep * 0.85],
+    'bill_amt_may': [bill_amt_sep * 0.80],
+    'bill_amt_apr': [bill_amt_sep * 0.75],
+    
+    # Payment amounts — fill with realistic defaults
+    'pay_amt_sep': [pay_amt_sep],
+    'pay_amt_aug': [max(pay_amt_sep * 0.9, 2000)],
+    'pay_amt_jul': [max(pay_amt_sep * 0.8, 2000)],
+    'pay_amt_jun': [max(pay_amt_sep * 0.7, 2000)],
+    'pay_amt_may': [max(pay_amt_sep * 0.6, 2000)],
+    'pay_amt_apr': [max(pay_amt_sep * 0.5, 2000)],
 })
 
 # --------------------- PREDICTION ---------------------
