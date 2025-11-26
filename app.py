@@ -24,7 +24,7 @@ age = st.sidebar.slider("Age", 20, 80, 35)
 
 education = st.sidebar.selectbox("Education Level",
     options=[1, 2, 3, 4, 5],
-    format_func=lambda x: {1:"Graduate", 2:"University", 3:"High School", 4:"Others"}.get(x, "Unknown"))
+    format_func=lambda x: {1:"Graduate School", 2:"University", 3:"High School", 4:"Others"}.get(x, "Unknown"))
 
 marital_status = st.sidebar.selectbox("Marital Status",
     options=[1, 2, 3],
