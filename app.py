@@ -23,7 +23,7 @@ credit_limit = st.sidebar.slider("Credit Limit (NT$)", 10_000, 1_000_000, 200_00
 age = st.sidebar.slider("Age", 20, 80, 35)
 
 education = st.sidebar.selectbox("Education Level",
-    options=[1, 2, 3, 4, 5, 6],
+    options=[1, 2, 3, 4, 5],
     format_func=lambda x: {1:"Graduate", 2:"University", 3:"High School", 4:"Others"}.get(x, "Unknown"))
 
 marital_status = st.sidebar.selectbox("Marital Status",
