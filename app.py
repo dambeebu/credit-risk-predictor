@@ -19,7 +19,7 @@ model = load_model()
 # --------------------- SIDEBAR: USER INPUT ---------------------
 st.sidebar.header("Customer Profile")
 
-credit_limit = st.sidebar.slider("Credit Limit (NT$)", 10_000, 1_000_000, 200_000, step=10_000)
+credit_limit = st.sidebar.slider("Credit Limit ($)", 10_000, 1_000_000, 200_000, step=10_000)
 age = st.sidebar.slider("Age", 20, 80, 35)
 
 education = st.sidebar.selectbox("Education Level",
@@ -33,16 +33,16 @@ marital_status = st.sidebar.selectbox("Marital Status",
 gender = st.sidebar.selectbox("Sex", options=[1, 2], format_func=lambda x: "Male" if x==1 else "Female")
 
 # Repayment status (most important features!)
-repay_status_sep = st.sidebar.selectbox("Repayment Last Month (Sep)", options=range(-2, 9),
+repay_status_sep = st.sidebar.selectbox("Repayment Last Month", options=range(-2, 9),
                             format_func=lambda x: "On time/Paid early" if x <= 0 else f"{x} months late")
-repay_status_aug = st.sidebar.selectbox("Repayment 2 Months Ago (Aug)", options=range(-2, 9),
+repay_status_aug = st.sidebar.selectbox("Repayment 2 Months Ago", options=range(-2, 9),
                             format_func=lambda x: "On time/Paid early" if x <= 0 else f"{x} months late")
-repay_status_jul = st.sidebar.selectbox("Repayment 3 Months Ago (Jul)", options=range(-2, 9),
+repay_status_jul = st.sidebar.selectbox("Repayment 3 Months Ago", options=range(-2, 9),
                             format_func=lambda x: "On time/Paid early" if x <= 0 else f"{x} months late")
 
 # Bill and payment amounts
-bill_amt_sep = st.sidebar.number_input("Bill Amount Last Month (NT$)", 0, 800_000, 50_000)
-pay_amt_sep = st.sidebar.number_input("Amount Paid Last Month (NT$)", 0, 500_000, 3000)
+bill_amt_sep = st.sidebar.number_input("Bill Amount Last Month ($)", 0, 800_000, 50_000)
+pay_amt_sep = st.sidebar.number_input("Amount Paid Last Month ($)", 0, 500_000, 3000)
 
 # --------------------- CREATE INPUT DATAFRAME (MUST HAVE EXACT SAME 25 COLUMNS) ---------------------
 input_data = pd.DataFrame({
